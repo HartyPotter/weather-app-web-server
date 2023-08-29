@@ -1,5 +1,3 @@
-console.log("Client side JS file!")
-
 const form = document.querySelector('form')
 const input = document.querySelector('input')
 const errorField = document.querySelector('.error')

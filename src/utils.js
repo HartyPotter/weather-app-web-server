@@ -1,9 +1,10 @@
 const request = require('request')
-
+require('dotenv').config();
 
 const geoCode = (address, callback) => {
-    const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURIComponent(address) + '&key=AIzaSyC5sf00LTzUtxJJmAuC0Hl41JtQG-2ZAZ8'
-
+    const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURIComponent(address) + '&key=' + encodeURIComponent(process.env.googleGeoCode_Key)
+    console.log(url)
+    
     request({url, json:true}, (error, {body}) => {
         if(error){
             callback('Unable to connect to location service')
@@ -23,7 +24,7 @@ const geoCode = (address, callback) => {
 }
 
 const forecast = (latitude, longitude, callback) => {
-    const url =  "http://api.weatherstack.com/current?access_key=93fa30b2eafa280b55faa2885532f21c&query=" + encodeURIComponent(latitude) + "," + encodeURIComponent(longitude) + "&units=m"
+    const url =  "http://api.weatherstack.com/current?access_key=" + encodeURIComponent(process.env.weatherStack_Key) + "&query=" + encodeURIComponent(latitude) + "," + encodeURIComponent(longitude) + "&units=m"
     
     request({url, json: true}, (error, {body}) => {
         if (error){

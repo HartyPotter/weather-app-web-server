@@ -4,7 +4,7 @@ const hbs = require('hbs')
 const utils = require('./utils.js')
 
 const app = x()
-
+const port = process.env.PORT
 // Define paths for Express
 const publicDir = path.join(__dirname, "../public")
 const viewPath = path.join(__dirname, "../templates/views")
@@ -96,6 +96,6 @@ app.get('*', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('Server is running!')
+app.listen(port, () => {
+    console.log('Server is running on ' + port)
 })

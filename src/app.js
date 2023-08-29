@@ -4,7 +4,7 @@ const hbs = require('hbs')
 const utils = require('./utils.js')
 
 const app = x()
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 // Define paths for Express
 const publicDir = path.join(__dirname, "../public")
 const viewPath = path.join(__dirname, "../templates/views")
@@ -35,7 +35,7 @@ app.get('/help', (req, res) => {
     res.render('help', {
         title: 'Help Page',
         name: "Youssef",
-        message: "You can send and receive text messages, photos, voice messages, and video using Messages. If you don't have Messages, you can get it from Google Play."
+        message: "Go to the 'Weather' tab and type in the address you want to get the forecast for."
     })
 })
 

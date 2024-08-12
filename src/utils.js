@@ -2,8 +2,7 @@ const request = require('request')
 require('dotenv').config();
 
 const geoCode = (address, callback) => {
-    const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + encodeURIComponent(address) + '&key=' + encodeURIComponent(process.env.googleGeoCode_Key)
-    console.log(url)
+    const url = 'https://api.opencagedata.com/geocode/v1/json?q=' + encodeURIComponent(address) + '&key=' + encodeURIComponent(process.env.googleGeoCode_Key)
     
     request({url, json:true}, (error, {body}) => {
         if(error){
@@ -11,9 +10,9 @@ const geoCode = (address, callback) => {
         } else if (body.results.length === 0) {
             callback('Unable to find location')
         } else{
-            const lat = body.results[0].geometry.location.lat
-            const lng = body.results[0].geometry.location.lng
-            const loc = body.results[0].formatted_address
+            const lat = body.results[0].geometry.lat
+            const lng = body.results[0].geometry.lng
+            const loc = body.results[0].formatted
             callback(undefined, {
                 lat,
                 lng,
